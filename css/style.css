@@ -1,0 +1,57 @@
+/* סגנונות כלליים */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('../img/hero-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 100px 0;
+    margin-bottom: 30px;
+}
+
+/* כרטיסי שירותים */
+.card {
+    transition: transform 0.3s ease;
+    border: none;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* טופס יצירת קשר */
+#contactForm .form-control {
+    border-radius: 0;
+    border: 1px solid #ddd;
+}
+
+#contactForm .form-control:focus {
+    box-shadow: none;
+    border-color: #0d6efd;
+}
+
+/* אנימציות */
+.fade-in {
+    animation: fadeIn 1s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* התאמה למובייל */
+@media (max-width: 768px) {
+    .hero-section {
+        padding: 50px 0;
+    }
+    
+    h1.display-4 {
+        font-size: 2.5rem;
+    }
+}
