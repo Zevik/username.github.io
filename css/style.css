@@ -5,53 +5,172 @@ body {
 
 /* Hero Section */
 .hero-section {
-    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('../img/hero-bg.jpg');
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../img/background.jpg');
     background-size: cover;
     background-position: center;
     color: white;
-    padding: 100px 0;
-    margin-bottom: 30px;
+    padding: 150px 0;
+    margin-bottom: 0;
+}
+
+/* תפריט ניווט */
+.navbar {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
 }
 
 /* כרטיסי שירותים */
 .card {
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     border: none;
     box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
 }
 
 .card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+}
+
+.card-body {
+    padding: 2rem;
+}
+
+/* אזור הפורטפוליו */
+#portfolio .card {
+    overflow: hidden;
+}
+
+#portfolio .card img {
+    transition: transform 0.3s ease;
+}
+
+#portfolio .card:hover img {
+    transform: scale(1.05);
 }
 
 /* טופס יצירת קשר */
-#contactForm .form-control {
-    border-radius: 0;
-    border: 1px solid #ddd;
+#contact {
+    background-color: #f8f9fa;
 }
 
-#contactForm .form-control:focus {
+.form-control {
+    border-radius: 0;
+    border: 1px solid #ddd;
+    padding: 0.8rem;
+}
+
+.form-control:focus {
     box-shadow: none;
     border-color: #0d6efd;
 }
 
 /* אנימציות */
 .fade-in {
-    animation: fadeIn 1s ease-in;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.5s ease forwards;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* פוטר */
+.social-links a {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 50%;
+    background-color: rgba(255,255,255,0.1);
+    margin: 0 5px;
+    transition: transform 0.3s ease;
+}
+
+.social-links a:hover {
+    transform: translateY(-3px);
+    background-color: rgba(255,255,255,0.2);
+}
+
+.social-links i {
+    font-size: 1.2rem;
 }
 
 /* התאמה למובייל */
 @media (max-width: 768px) {
     .hero-section {
-        padding: 50px 0;
+        padding: 100px 0;
     }
     
     h1.display-4 {
         font-size: 2.5rem;
     }
+    
+    .navbar-brand {
+        font-size: 1.2rem;
+    }
+    
+    .card {
+        margin-bottom: 20px;
+    }
+}
+
+/* כפתורים */
+.btn {
+    padding: 0.8rem 2rem;
+    border-radius: 30px;
+    text-transform: uppercase;
+    font-weight: 500;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background-color: #0d6efd;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #0b5ed7;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(13, 110, 253, 0.3);
+}
+
+/* אפקטים נוספים */
+.text-gradient {
+    background: linear-gradient(45deg, #0d6efd, #0099ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* סגנון טקסט */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+}
+
+.lead {
+    font-size: 1.25rem;
+    font-weight: 300;
+}
+
+/* תיקונים לתצוגה בעברית */
+.navbar-nav {
+    padding-right: 0;
+}
+
+.text-right {
+    text-align: right !important;
+}
+
+.mr-auto {
+    margin-right: auto !important;
+    margin-left: 0 !important;
 }
