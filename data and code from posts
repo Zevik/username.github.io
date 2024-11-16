@@ -1,0 +1,60 @@
+
+javascript:(function() {
+    function log(message) {
+        console.log(message);
+        outputWindow.document.write(message + '<br>');
+    }
+
+    function findTextNodes(element) {
+        let textNodes = [];
+        if (element.nodeType === Node.TEXT_NODE && element.textContent.trim() !== '') {
+            textNodes.push(element);
+        } else {
+            for (let child of element.childNodes) {
+                textNodes = textNodes.concat(findTextNodes(child));
+            }
+        }
+        return textNodes;
+    }
+
+    function extractContent(element) {
+        const textNodes = findTextNodes(element);
+        return textNodes.map(node => ({
+            text: node.textContent.trim(),
+            parent: node.parentElement.tagName,
+            classes: node.parentElement.className
+        }));
+    }
+
+    function findCommentsContainer() {
+        const possibleContainers = document.querySelectorAll('div[role="main"] > div > div > div > div > div > div > div > div > div');
+        for (let container of possibleContainers) {
+            if (container.querySelector('[role="article"]')) {
+                return container;
+            }
+        }
+        return null;
+    }
+
+    const outputWindow = window.open('', 'Facebook Comments', 'width=800,height=600');
+    outputWindow.document.write('<h2>Facebook Comments Extractor Log</h2>');
+
+    try {
+        log('Starting extraction process');
+        const commentsContainer = findCommentsContainer();
+        if (!commentsContainer) {
+            throw new Error('Could not find comments container');
+        }
+        log('Found comments container. Extracting content:');
+        const extractedContent = extractContent(commentsContainer);
+        log('Extraction complete. Found ' + extractedContent.length + ' text nodes.');
+        log('Outputting results...');
+        extractedContent.forEach((item, index) => {
+            outputWindow.document.write(<p><strong>Text ${index + 1}:</strong> ${item.text}<br>);
+            outputWindow.document.write(<em>Parent:</em> ${item.parent}, <em>Classes:</em> ${item.classes}</p>);
+        });
+    } catch (error) {
+        log('An error occurred: ' + error.message);
+        console.error(error);
+    }
+})();
